@@ -27,14 +27,6 @@ class LinkedList {
         }
     }
 
-    public void insertElement(Node value, double index) {
-        // Implementation for inserting at a specific index goes here
-    }
-
-    public void deleteElement(double index) {
-        // Implementation for deleting at a specific index goes here
-    }
-
     public void printList() {
         Node current = root;
         System.out.println("Linked List");
@@ -57,7 +49,7 @@ class Queue {
     public void enqueue(double value) {
         Node newNode = new Node(value, null);
         data.addElement(newNode);
-        data.last = newNode; // Update last pointer
+        data.last = newNode;
     }
 
     public double dequeue() {
@@ -66,7 +58,7 @@ class Queue {
         }
         Node cur_node = data.root;
         data.root = cur_node.next;
-        return cur_node.value; // Return the value, not the node
+        return cur_node.value;
     }
 
     public void printQueue() {
