@@ -34,6 +34,16 @@ class APPLICANT {
 
 }
 
+class Node {
+	APPLICANT Value = null;
+	Node next = null;
+
+	Node(APPLICANT applicant, Node next) {
+		this.Value = applicant;
+		this.next = next;
+	}
+}
+
 class LinkedList {
 	Node root = null;
 
@@ -94,24 +104,17 @@ class LinkedList {
 		}
 
 		Node cur = this.root;
-		Node next = cur.next;
-
-		if (index == 0)
-			this.root = next;
-		
 		int curIndex = 0;
-		Node previous = null;
-		while (curIndex < index && next != null) {
-			previous = cur;
-			cur = next;
-			next = cur.next;
+
+		while (cur != null || curIndex < index - 1) {
+			cur = cur.next;
 			curIndex++;
 		}
 
-		if (curIndex == index) {
-			previous.next = next;
+		if (cur == null) {
+			System.out.println("Index out of range");
 		} else {
-			System.err.println("Index out of range");
+			cur.next = cur.next.next;
 		}
 	}
 
@@ -177,13 +180,12 @@ class LinkedList {
 		}
 	}
 
-
 	public static void printApplicant(APPLICANT applicants) {
 		System.out.println("Surname, initials: " + applicants.getName());
 		System.out.println("Gender: " + applicants.getGender());
 		System.out.println("Specialty name: " + applicants.getSpecialty());
 		System.out.println("Average mark: " + calculateAverage(applicants.getExam()));
-		System.out.println(); // Add a newline for better readability
+		System.out.println();
 	}
 
 	public static double calculateAverage(int[] exam) {
@@ -196,15 +198,7 @@ class LinkedList {
 }
 
 
-class Node {
-	APPLICANT Value = null;
-	Node next = null;
 
-	Node(APPLICANT applicant, Node next) {
-		this.Value = applicant;
-		this.next = next;
-	}
-}
 
 
 class main {
@@ -229,6 +223,27 @@ class main {
 	}
 
 	public static void ex2(LinkedList lst1, LinkedList lst2, int n, int m) {
+
+		int counter1 = 0;
+		int counter2 = 0;
 		
+		Node cur1 = lst1.root;
+		Node cur2 = lst2.root;
+		while (lst1.root != null) {
+			counter1++;
+			if (counter1 % n == 0) {
+				System.out.println(cur1.Value);
+				lst1.deleteElement(counter1);
+			}
+			cur1 = cur1.next;
+		}
+
+		while (lst1.root != null) {
+			counter2++;
+			if (counter2 % m == 0) {
+				System.out.println(cur2.Value);
+				lst2.deleteElement(counter2);
+			}
+		}
 	}
 }

@@ -63,7 +63,6 @@ public class task1 {
         int length = scanner.nextInt();
 
         Node[] nodes = new Node[length];
-
         for (i = 0; i < length; i++) {
             if (i == 0) {
                 nodes[i] = head;
@@ -74,7 +73,6 @@ public class task1 {
         }
 
         list.printList();
-
 
         DoubleLinkedList new_list = new DoubleLinkedList(duplicateNumbers(list.head));
         new_list.printList();

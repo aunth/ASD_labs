@@ -31,7 +31,7 @@ class LinkedList {
         Node current = root;
         System.out.println("Linked List");
         while (current != null) {
-            System.out.print(current.value + " -> ");
+            System.out.print(current.value + " <- ");
             current = current.next;
         }
         System.out.println("null");

@@ -1,13 +1,13 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-class APPLICANT {
+class ABITURIENT {
     String NAME;
     String GENDER;
     String SPEC;
     int[] EXAM;
 
-    APPLICANT(String name, String gender, String spec, int[] exam) {
+    ABITURIENT(String name, String gender, String spec, int[] exam) {
         this.NAME = name;
         this.GENDER = gender;
         this.SPEC = spec;
@@ -39,7 +39,7 @@ public class main {
 		// int N;
         // while (true) {
         //     try {
-        //         System.out.print("Enter the number of applicants: ");
+        //         System.out.print("Enter the number of ABITURIENTs: ");
         //         N = scanner.nextInt();
         //         if (N <= 0) {
         //             throw new InputMismatchException();
@@ -51,29 +51,29 @@ public class main {
 
         // }
 
-        // APPLICANT[] APPLICANTS = setApplicants(N);
+        // ABITURIENT[] ABITURIENTS = setABITURIENTs(N);
 
 
-        // sortApplicantByAverage(APPLICANTS);
+        // sortABITURIENTByAverage(ABITURIENTS);
 
-        // printApplicant(APPLICANTS);
+        // printABITURIENT(ABITURIENTS);
 
         test();
     }
 
-    public static void printApplicant(APPLICANT[] applicants) {
-        System.out.println("Applicant Information:");
-        for (int i = 0; i < applicants.length; i++) {
-            System.out.println("Applicant " + (i + 1) + ":");
-            System.out.println("Surname, initials: " + applicants[i].getName());
-            System.out.println("Gender: " + applicants[i].getGender());
-            System.out.println("Specialty name: " + applicants[i].getSpecialty());
-            System.out.println("Average mark: " + calculateAverage(applicants[i].getExam()));
+    public static void printABITURIENT(ABITURIENT[] ABITURIENTs) {
+        System.out.println("ABITURIENT Information:");
+        for (int i = 0; i < ABITURIENTs.length; i++) {
+            System.out.println("ABITURIENT " + (i + 1) + ":");
+            System.out.println("Surname, initials: " + ABITURIENTs[i].getName());
+            System.out.println("Gender: " + ABITURIENTs[i].getGender());
+            System.out.println("Specialty name: " + ABITURIENTs[i].getSpecialty());
+            System.out.println("Average mark: " + calculateAverage(ABITURIENTs[i].getExam()));
             System.out.println(); // Add a newline for better readability
         }
     }
 
-	public static void getStudentsByMark(APPLICANT[] APPLICANTS) {
+	public static void getStudentsByMark(ABITURIENT[] ABITURIENTS) {
 
 		Scanner scanner = new Scanner(System.in);
         int passMark = 0;
@@ -85,24 +85,24 @@ public class main {
             return ;
         }
         boolean anyBelowPassMark = false;
-        for (APPLICANT applicant : APPLICANTS) {
-            if (calculateAverage(applicant.EXAM) < passMark) {
+        for (ABITURIENT ABITURIENT : ABITURIENTS) {
+            if (calculateAverage(ABITURIENT.EXAM) < passMark) {
                 anyBelowPassMark = true;
-                System.out.println(applicant.NAME + " - " + applicant.SPEC);
+                System.out.println(ABITURIENT.NAME + " - " + ABITURIENT.SPEC);
             }
         }
         if (!anyBelowPassMark) {
-            System.out.println("No applicants have a score below the passing mark.");
+            System.out.println("No ABITURIENTs have a score below the passing mark.");
         }
 	}
 
-    public static APPLICANT[] setApplicants(int N) {
+    public static ABITURIENT[] setABITURIENTs(int N) {
 
         Scanner scanner = new Scanner(System.in);
-        APPLICANT[] APPLICANTS = new APPLICANT[N];
+        ABITURIENT[] ABITURIENTS = new ABITURIENT[N];
 
         for (int i = 0; i < N; i++) {
-            System.out.println("Data for applicant " + (i + 1) + ":");
+            System.out.println("Data for ABITURIENT " + (i + 1) + ":");
             System.out.println("Surname, initials: ");
             String name = scanner.nextLine();
             System.out.println("Gender: ");
@@ -114,18 +114,18 @@ public class main {
                 System.out.println("Entrance exam result for subject " + (j + 1) + ": ");
                 exam[j] = scanner.nextInt();
             }
-            APPLICANTS[i] = new APPLICANT(name, gender, spec, exam);
+            ABITURIENTS[i] = new ABITURIENT(name, gender, spec, exam);
         }
-        return APPLICANTS;
+        return ABITURIENTS;
     }
 
-    public static void sortApplicantByAverage(APPLICANT[] applicants) {
-        for (int i = 0; i < applicants.length - 1; i++) {
-            for (int j = 0; j < applicants.length - i - 1; j++) {
-                if (calculateAverage(applicants[j].EXAM) > calculateAverage(applicants[j + 1].EXAM)) {
-                    APPLICANT temp = applicants[j];
-                    applicants[j] = applicants[j + 1];
-                    applicants[j + 1] = temp;
+    public static void sortABITURIENTByAverage(ABITURIENT[] ABITURIENTs) {
+        for (int i = 0; i < ABITURIENTs.length - 1; i++) {
+            for (int j = 0; j < ABITURIENTs.length - i - 1; j++) {
+                if (calculateAverage(ABITURIENTs[j].EXAM) > calculateAverage(ABITURIENTs[j + 1].EXAM)) {
+                    ABITURIENT temp = ABITURIENTs[j];
+                    ABITURIENTs[j] = ABITURIENTs[j + 1];
+                    ABITURIENTs[j + 1] = temp;
                 }
             }
         }
@@ -140,23 +140,23 @@ public class main {
     }
 
     public static void test() {
-        APPLICANT[] applicants = {
-            new APPLICANT("John B.B", "Male", "Computer Science", new int[]{100, 100, 80}),
-            new APPLICANT("Alice C.D", "Female", "Electrical Engineering", new int[]{90, 85, 95}),
-            new APPLICANT("Bob E.F", "Male", "Mechanical Engineering", new int[]{80, 75, 85}),
-            new APPLICANT("Eve G.H", "Female", "Civil Engineering", new int[]{85, 90, 80}),
-            new APPLICANT("Charlie I.J", "Male", "Chemical Engineering", new int[]{95, 85, 90}),
-            new APPLICANT("Diana K.L", "Female", "Aerospace Engineering", new int[]{85, 90, 85}),
-            new APPLICANT("Frank M.N", "Male", "Biomedical Engineering", new int[]{90, 80, 85}),
-            new APPLICANT("Grace O.P", "Female", "Environmental Engineering", new int[]{85, 95, 80}),
-            new APPLICANT("Henry Q.R", "Male", "Industrial Engineering", new int[]{80, 85, 90}),
-            new APPLICANT("Isabella S.T", "Female", "Materials Science", new int[]{95, 90, 85})
+        ABITURIENT[] ABITURIENTs = {
+            new ABITURIENT("John B.B", "Male", "Computer Science", new int[]{100, 100, 80}),
+            new ABITURIENT("Alice C.D", "Female", "Electrical Engineering", new int[]{90, 85, 95}),
+            new ABITURIENT("Bob E.F", "Male", "Mechanical Engineering", new int[]{80, 75, 85}),
+            new ABITURIENT("Eve G.H", "Female", "Civil Engineering", new int[]{85, 90, 80}),
+            new ABITURIENT("Charlie I.J", "Male", "Chemical Engineering", new int[]{95, 85, 90}),
+            new ABITURIENT("Diana K.L", "Female", "Aerospace Engineering", new int[]{85, 90, 85}),
+            new ABITURIENT("Frank M.N", "Male", "Biomedical Engineering", new int[]{90, 80, 85}),
+            new ABITURIENT("Grace O.P", "Female", "Environmental Engineering", new int[]{85, 95, 80}),
+            new ABITURIENT("Henry Q.R", "Male", "Industrial Engineering", new int[]{80, 85, 90}),
+            new ABITURIENT("Isabella S.T", "Female", "Materials Science", new int[]{95, 90, 85})
         };
 
-        sortApplicantByAverage(applicants);
-        printApplicant(applicants);
+        sortABITURIENTByAverage(ABITURIENTs);
+        printABITURIENT(ABITURIENTs);
 
-        getStudentsByMark(applicants);
+        getStudentsByMark(ABITURIENTs);
     }
 
 
